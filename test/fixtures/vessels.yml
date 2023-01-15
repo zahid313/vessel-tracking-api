@@ -1,0 +1,10 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+one:
+  name: 102 SUNG SHIN
+  owner_id: JP001
+  naccs_code: D7OP
+
+two:
+  name: 107 HYODONG CHEMI
+  owner_id: JP002
+  naccs_code: DSRG6

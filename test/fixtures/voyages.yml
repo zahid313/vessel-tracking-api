@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from_place: LA
+  to_place: NYC
+  start_at: 2023-01-14 09:50:44
+  end_at: 2023-01-14 10:50:44
+  vessel: one
+
+two:
+  from_place: TK
+  to_place: HK
+  start_at: 2023-01-14 09:50:44
+  end_at: 2023-01-14 10:50:44
+  vessel: two

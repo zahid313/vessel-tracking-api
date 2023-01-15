@@ -1,0 +1,57 @@
+version: '3'
+services:
+  web:
+    build: .
+    command: bundle exec puma -C config/puma.rb
+    # ports:
+    #   - "3000:3000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      # - redis
+    # environment:
+    #   REDIS_URL: ${POSTGRES_USER:-redis://redis:6379/0}      
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./public:/app/public
+    depends_on:
+      - web
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-12345678}
+      PGDATA: /data/postgres
+    volumes:
+       - postgres:/data/postgres
+    # ports:
+    #   - "5432:5432"
+    restart: unless-stopped
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-zahid313@gmail.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+       - pgadmin:/var/lib/pgadmin
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    restart: unless-stopped      
+  # redis:
+  #   image: redis:latest
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - redisdata:/var/lib/redis/data
+
+volumes:
+  postgres:
+  pgadmin:
+  # redisdata:
