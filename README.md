@@ -9,11 +9,11 @@
 
 1. Clone the project from the repository
 
-        $ git clone https://github.com/yourusername/yourproject.git
+        $ git clone https://github.com/zahid313/vessel-tracking-api.git
 
 2. Navigate to the project directory
 
-        $ cd yourproject
+        $ cd vessel-tracking-api
 
 3. Build the Docker images using the following command
 
