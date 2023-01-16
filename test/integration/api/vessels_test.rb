@@ -28,4 +28,11 @@ class Api::VesselsTest < ActionDispatch::IntegrationTest
     assert_response :success
   end 
 
+  test "should return nil when no current voyage is found" do
+    vessel = vessels(:one)
+    Voyage.create(from_place: "Los Angeles", to_place: "Shanghai", start_at: 2.days.ago, end_at: 1.day.ago, vessel_id: vessel.id)
+    get current_voyage_api_vessel_path(vessel)
+    assert_equal JSON.parse(response.body), {}
+  end  
+
 end
