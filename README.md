@@ -55,6 +55,7 @@ The **docker-compose.yml** file has the configurations for the following service
         $ docker-compose run web rake db:migrate
 
     
+**Postman collection has been added that documents the API.**
 
 ## Conclusion
 
