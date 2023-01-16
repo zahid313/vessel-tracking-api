@@ -1,6 +1,6 @@
 class Api::VesselsController < ApplicationController
     include  Pagination
-    before_action :set_vessel, only: [:show, :update]
+    before_action :set_vessel, only: [:show, :update, :current_voyage]
   
     def index
       @q = Vessel.ransack(params[:q])
@@ -15,6 +15,10 @@ class Api::VesselsController < ApplicationController
     end
   
     def show
+    end
+
+    def current_voyage
+      @voyage = @vessel.current_voyage
     end
   
     def update

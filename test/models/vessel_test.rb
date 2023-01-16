@@ -34,6 +34,39 @@ class VesselTest < ActiveSupport::TestCase
     vessel.destroy
     assert_raise(ActiveRecord::RecordNotFound) { Vessel.find(vessel.id) }
   end
+
+  context "current voyage" do
+    setup do
+      @vessel = vessels(:one)
+      @start_time = Time.now - 1.day
+      @end_time = Time.now + 1.day
+      @voyage = Voyage.create!(from_place: "Los Angeles", to_place: "Shanghai", start_time: @start_time, end_time: @end_time, vessel: @vessel)
+    end
+  
+    test "should find current voyage" do
+      current_voyage = @vessel.current_voyage
+      assert_equal @voyage, current_voyage
+    end
+  
+    test "should return nil when there is no voyage for the vessel" do
+      @vessel.voyages.destroy_all
+      current_voyage = @vessel.current_voyage
+      assert_nil current_voyage
+    end
+  
+    test "should return nil when all the voyages for the vessel are ended" do
+      @voyage.update(end_time: Time.now - 1.day)
+      current_voyage = @vessel.current_voyage
+      assert_nil current_voyage
+    end
+  
+    test "should return nil when all the voyages for the vessel are not started yet" do
+      @voyage.update(start_time: Time.now + 1.day)
+      current_voyage = @vessel.current_voyage
+      assert_nil current_voyage
+    end
+    
+  end
     
   
 end
