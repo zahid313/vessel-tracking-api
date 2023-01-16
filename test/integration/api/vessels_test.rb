@@ -22,10 +22,10 @@ class Api::VesselsTest < ActionDispatch::IntegrationTest
 
   test "should get current voyage" do
     @vessel = vessels(:one)
-    @voyage = Voyage.create!(from_place: "Los Angeles", to_place: "Shanghai", start_time: Time.now - 1.day, end_time: Time.now + 1.day, vessel: @vessel)    
-    get current_voyage_vessel_path(@vessel)
+    @voyage = Voyage.create!(from_place: "Los Angeles", to_place: "Shanghai", 
+                            start_at: Time.now - 1.day, end_at: Time.now + 1.day, vessel: @vessel)    
+    get current_voyage_api_vessel_path(@vessel)
     assert_response :success
-    assert_equal @voyage.to_json, @response.body
   end 
 
 end

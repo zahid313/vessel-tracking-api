@@ -3,10 +3,8 @@ class Vessel < ApplicationRecord
     validates :naccs_code, uniqueness: true    
     has_many :voyages
 
-
-    private 
-
-    def current_voyage(vessel)
-        vessel.voyages.where('start_at <= ? && end_at >= ?', Time.now).first
+    def current_voyage
+        current_time = Time.now
+        voyages.where('start_at <= ? and end_at >= ?', current_time, current_time).first
     end    
 end
