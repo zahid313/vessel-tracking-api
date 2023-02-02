@@ -10,18 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - name: Build the stack
+        run: docker-compose up -d
+      - name: Test
+        run: docker-compose run web rails test   
 
-    - name: Set up Docker Compose
-      uses: docker/setup-compose@v1
-      with:
-        version: 1.25.5
-
-    - name: Run tests
-      uses: docker/compose-action@v1
-      with:
-        context: .
-        file: docker-compose.yml
-        project-name: vessel-tracking
-        command: rails tests
