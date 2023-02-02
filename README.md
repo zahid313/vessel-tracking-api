@@ -1,4 +1,4 @@
-![Tests](https://github.com/github/docs/actions/workflows/run-tests.yml/badge.svg?event=push)
+![Tests](https://github.com/zahid313/vessel-tracking-api/actions/workflows/run-tests.yml/badge.svg?event=push)
 # Setting up the project with Docker
 
 ## Prerequisites
