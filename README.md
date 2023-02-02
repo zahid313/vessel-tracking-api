@@ -1,3 +1,4 @@
+![Tests](https://github.com/github/docs/actions/workflows/run-tests.yml/badge.svg?event=push)
 # Setting up the project with Docker
 
 ## Prerequisites
